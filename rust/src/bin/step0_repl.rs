@@ -1,26 +1,39 @@
-extern crate mal;
+extern crate readline;
+extern crate libc;
 
-use mal::readline;
+use std::{ffi};
 
-// read
-fn read(str: String) -> String {
-    str
+use readline as rl;
+
+fn read(s: String) -> String {
+    s
 }
 
-// eval
-fn eval(ast: String) -> String {
-    ast
+fn eval(s: String) -> String {
+    s
 }
 
-// print
-fn print(exp: String) -> String {
-    exp
+fn print(s: String) -> String {
+    println!("{}", &s);
+    s
 }
 
-fn main() {
+fn rep(s: String){
+   print(eval(read(s)));
+}
+
+fn main(){
+    let prompt: ffi::CString = ffi::CString::new("user> ").unwrap();
     loop {
-        let line = readline::mal_readline("user> ");
-        match line { None => break, _ => () }
-        println!("{}", print(eval(read(line.unwrap()))));
+        match rl::readline(&prompt) {
+            Ok(s) => {
+                let input = (*s).to_str().unwrap().to_string();
+                rep(input);
+            },
+            _ => {
+                println!("readline error");
+                break;
+            },
+        }
     }
 }
