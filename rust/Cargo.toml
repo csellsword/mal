@@ -7,3 +7,11 @@ authors = ["Michael V Riedlin <mriedlin@gmail.com>"]
 readline = "0.0.11"
 libc = "0.2.2"
 regex = "0.1.46"
+
+[[bin]]
+name = "step0_repl"
+path = "src/step0_repl.rs"
+
+[[bin]]
+name = "step1_read_print"
+path = "src/step1_read_print.rs"
