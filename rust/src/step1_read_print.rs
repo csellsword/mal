@@ -1,21 +1,27 @@
 extern crate readline;
 extern crate libc;
+extern crate regex;
+
+mod types;
+mod reader;
+mod printer;
 
 use std::{ffi};
 
 use readline as rl;
 
-fn read(s: String) -> String {
+fn read(s: String) -> MalType {
+    read_str(s)
+}
+
+fn eval(s: MalType) -> MalType {
     s
 }
 
-fn eval(s: String) -> String {
-    s
-}
-
-fn print(s: String) -> String {
-    println!("{}", &s);
-    s
+fn print(s: MalType) -> String {
+    let pretty_print = pr_str(&s);
+    println!("{}", &pretty_print);
+    pretty_print
 }
 
 fn rep(s: String){
