@@ -1,4 +1,4 @@
-use super::types;
+use super::types::*;
 use super::std::vec;
 use super::regex as regex;
 
@@ -8,7 +8,7 @@ static token_regex: &'static str = r###"[\s,]*(~@|[\[\]{}()'`~^@]|"(?:\\.|[^\\"]
 
 struct Reader {
     tokens: Vec<String>,
-    pos: u64,
+    pos: usize,
 }
 
 impl Reader {
@@ -18,52 +18,63 @@ impl Reader {
 
     fn next(&mut self) -> Option<String> {
         self.pos = self.pos + 1;
-        self.tokens.get(self.pos -1)
+        match self.tokens.get(self.pos -1) {
+            Some(s) => Some(s.to_string()),
+            _ => None,
+        }
     }
 
     fn peek(&self) -> Option<String> {
-        self.tokens.get(self.pos)
+        match self.tokens.get(self.pos) {
+            Some(s) => Some(s.to_string()),
+            _ => None,
+        }
     }
 }
 
-fn read_str(src: &str) -> Reader {
-    let reader = Reader::new(tokenizer(src));
-    read_form(reader);
+pub fn read_str(src: &str) -> MalType {
+    let mut reader = Reader::new(tokenizer(src));
+    read_form(&mut reader)
 }
 
 fn tokenizer(src: &str) -> Vec<String> {
     let re = regex::Regex::new(token_regex).unwrap();
     let mut v: Vec<String> = Vec::new();
     for t in re.captures_iter(src) {
-        v.push(t);
+        v.push(t.at(0).unwrap().to_string());
     }
     v
 }
 
-fn read_form(reader: &mut Reader) -> MalType {
-    let t = &reader.peek().unwrap();
+// strange, why mut twice?
+fn read_form(mut reader: &mut Reader) -> MalType {
+    println!("read_form");
+    let tt = reader.next().unwrap();
+    let t = tt.as_str();
+    println!("read_form, {}", t);
     match t {
-        '(' => {
-            read_list(&mut reader);
-        },
+        "(" => read_list(&mut reader),
         _ => read_atom(&mut reader),
     }
 }
 
-fn read_list(reader: &mut Reader) {
+fn read_list(reader: &mut Reader) -> MalType {
+    println!("read_list");
     let mut result: Vec<MalType> = Vec::new();
     loop {
-        let t = &reader.peek().unwrap();
+        let tt = reader.next().unwrap();
+        let t = tt.as_str();
+        println!("read_list, {}", t);
         match t {
-            ')' => break,
-            _ => results.push(read_form(&reader)),
+            ")" => break,
+            _ => result.push(read_form(reader)),
         }
     }
     MalType::Vector(result)
 }
 
-fn read_atom(reader: &mut Reader) {
-    let tok = &reader.next().unwrap();
+fn read_atom(reader: &mut Reader) -> MalType {
+    let tok = reader.next().unwrap();
     let intReg = regex::Regex::new(r"^-?[0-9]+$").unwrap();
     if intReg.is_match(&tok) {
         MalType::Int(tok.parse().unwrap())

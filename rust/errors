@@ -1,0 +1,227 @@
+src/types.rs:17:13: 17:25 error: mismatched types:
+ expected `&&types::MalType`,
+    found `types::MalType`
+(expected &-ptr,
+    found enum `types::MalType`) [E0308]
+src/types.rs:17             MalType::Nil => "Nil".to_string(),
+                            ^~~~~~~~~~~~
+src/types.rs:17:13: 17:25 help: run `rustc --explain E0308` to see a detailed explanation
+src/types.rs:18:13: 18:28 error: mismatched types:
+ expected `&&types::MalType`,
+    found `types::MalType`
+(expected &-ptr,
+    found enum `types::MalType`) [E0308]
+src/types.rs:18             MalType::Int(_) => "Int".to_string(),
+                            ^~~~~~~~~~~~~~~
+src/types.rs:18:13: 18:28 help: run `rustc --explain E0308` to see a detailed explanation
+src/types.rs:19:13: 19:32 error: mismatched types:
+ expected `&&types::MalType`,
+    found `types::MalType`
+(expected &-ptr,
+    found enum `types::MalType`) [E0308]
+src/types.rs:19             MalType::MString(_) => "MString".to_string(),
+                            ^~~~~~~~~~~~~~~~~~~
+src/types.rs:19:13: 19:32 help: run `rustc --explain E0308` to see a detailed explanation
+src/types.rs:20:13: 20:26 error: mismatched types:
+ expected `&&types::MalType`,
+    found `types::MalType`
+(expected &-ptr,
+    found enum `types::MalType`) [E0308]
+src/types.rs:20             MalType::True => "True".to_string(),
+                            ^~~~~~~~~~~~~
+src/types.rs:20:13: 20:26 help: run `rustc --explain E0308` to see a detailed explanation
+src/types.rs:21:13: 21:27 error: mismatched types:
+ expected `&&types::MalType`,
+    found `types::MalType`
+(expected &-ptr,
+    found enum `types::MalType`) [E0308]
+src/types.rs:21             MalType::False => "False".to_string(),
+                            ^~~~~~~~~~~~~~
+src/types.rs:21:13: 21:27 help: run `rustc --explain E0308` to see a detailed explanation
+src/types.rs:22:13: 22:28 error: mismatched types:
+ expected `&&types::MalType`,
+    found `types::MalType`
+(expected &-ptr,
+    found enum `types::MalType`) [E0308]
+src/types.rs:22             MalType::Sym(_) => "Sym".to_string(),
+                            ^~~~~~~~~~~~~~~
+src/types.rs:22:13: 22:28 help: run `rustc --explain E0308` to see a detailed explanation
+src/types.rs:23:13: 23:31 error: mismatched types:
+ expected `&&types::MalType`,
+    found `types::MalType`
+(expected &-ptr,
+    found enum `types::MalType`) [E0308]
+src/types.rs:23             MalType::Vector(_) => "Vector".to_string(),
+                            ^~~~~~~~~~~~~~~~~~
+src/types.rs:23:13: 23:31 help: run `rustc --explain E0308` to see a detailed explanation
+src/types.rs:24:13: 24:32 error: mismatched types:
+ expected `&&types::MalType`,
+    found `types::MalType`
+(expected &-ptr,
+    found enum `types::MalType`) [E0308]
+src/types.rs:24             MalType::Keyword(_) => "Keyword".to_string(),
+                            ^~~~~~~~~~~~~~~~~~~
+src/types.rs:24:13: 24:32 help: run `rustc --explain E0308` to see a detailed explanation
+src/types.rs:25:13: 25:31 error: no associated item named `List` found for type `types::MalType` in the current scope
+src/types.rs:25             MalType::List(_,_) => "List".to_string(),
+                            ^~~~~~~~~~~~~~~~~~
+src/reader.rs:21:25: 21:36 error: mismatched types:
+ expected `usize`,
+    found `u64` [E0308]
+src/reader.rs:21         self.tokens.get(self.pos -1)
+                                         ^~~~~~~~~~~
+src/reader.rs:21:25: 21:36 help: run `rustc --explain E0308` to see a detailed explanation
+src/reader.rs:21:9: 21:37 error: mismatched types:
+ expected `core::option::Option<collections::string::String>`,
+    found `core::option::Option<&collections::string::String>`
+(expected struct `collections::string::String`,
+    found &-ptr) [E0308]
+src/reader.rs:21         self.tokens.get(self.pos -1)
+                         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+src/reader.rs:21:9: 21:37 help: run `rustc --explain E0308` to see a detailed explanation
+src/reader.rs:25:25: 25:33 error: mismatched types:
+ expected `usize`,
+    found `u64` [E0308]
+src/reader.rs:25         self.tokens.get(self.pos)
+                                         ^~~~~~~~
+src/reader.rs:25:25: 25:33 help: run `rustc --explain E0308` to see a detailed explanation
+src/reader.rs:25:9: 25:34 error: mismatched types:
+ expected `core::option::Option<collections::string::String>`,
+    found `core::option::Option<&collections::string::String>`
+(expected struct `collections::string::String`,
+    found &-ptr) [E0308]
+src/reader.rs:25         self.tokens.get(self.pos)
+                         ^~~~~~~~~~~~~~~~~~~~~~~~~
+src/reader.rs:25:9: 25:34 help: run `rustc --explain E0308` to see a detailed explanation
+src/reader.rs:31:15: 31:21 error: mismatched types:
+ expected `&mut reader::Reader`,
+    found `reader::Reader`
+(expected &-ptr,
+    found struct `reader::Reader`) [E0308]
+src/reader.rs:31     read_form(reader);
+                               ^~~~~~
+src/reader.rs:31:15: 31:21 help: run `rustc --explain E0308` to see a detailed explanation
+src/reader.rs:38:16: 38:17 error: mismatched types:
+ expected `collections::string::String`,
+    found `regex::re::Captures<'_>`
+(expected struct `collections::string::String`,
+    found struct `regex::re::Captures`) [E0308]
+src/reader.rs:38         v.push(t);
+                                ^
+src/reader.rs:38:16: 38:17 help: run `rustc --explain E0308` to see a detailed explanation
+src/reader.rs:46:9: 46:12 error: mismatched types:
+ expected `&collections::string::String`,
+    found `char`
+(expected &-ptr,
+    found char) [E0308]
+src/reader.rs:46         '(' => {
+                         ^~~
+src/reader.rs:46:9: 46:12 help: run `rustc --explain E0308` to see a detailed explanation
+src/reader.rs:46:16: 48:10 error: mismatched types:
+ expected `types::MalType`,
+    found `()`
+(expected enum `types::MalType`,
+    found ()) [E0308]
+src/reader.rs:46         '(' => {
+src/reader.rs:47             read_list(&mut reader);
+src/reader.rs:48         },
+src/reader.rs:46:16: 48:10 help: run `rustc --explain E0308` to see a detailed explanation
+src/reader.rs:49:14: 49:36 error: mismatched types:
+ expected `types::MalType`,
+    found `()`
+(expected enum `types::MalType`,
+    found ()) [E0308]
+src/reader.rs:49         _ => read_atom(&mut reader),
+                              ^~~~~~~~~~~~~~~~~~~~~~
+src/reader.rs:49:14: 49:36 help: run `rustc --explain E0308` to see a detailed explanation
+src/reader.rs:58:13: 58:16 error: mismatched types:
+ expected `&collections::string::String`,
+    found `char`
+(expected &-ptr,
+    found char) [E0308]
+src/reader.rs:58             ')' => break,
+                             ^~~
+src/reader.rs:58:13: 58:16 help: run `rustc --explain E0308` to see a detailed explanation
+src/reader.rs:59:40: 59:47 error: mismatched types:
+ expected `&mut reader::Reader`,
+    found `&&mut reader::Reader`
+(values differ in mutability) [E0308]
+src/reader.rs:59             _ => result.push(read_form(&reader)),
+                                                        ^~~~~~~
+src/reader.rs:59:40: 59:47 help: run `rustc --explain E0308` to see a detailed explanation
+src/reader.rs:62:5: 62:28 error: mismatched types:
+ expected `()`,
+    found `types::MalType`
+(expected (),
+    found enum `types::MalType`) [E0308]
+src/reader.rs:62     MalType::Vector(result)
+                     ^~~~~~~~~~~~~~~~~~~~~~~
+src/reader.rs:62:5: 62:28 help: run `rustc --explain E0308` to see a detailed explanation
+src/reader.rs:69:9: 69:43 error: mismatched types:
+ expected `()`,
+    found `types::MalType`
+(expected (),
+    found enum `types::MalType`) [E0308]
+src/reader.rs:69         MalType::Int(tok.parse().unwrap())
+                         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+src/reader.rs:69:9: 69:43 help: run `rustc --explain E0308` to see a detailed explanation
+src/reader.rs:72:22: 72:25 error: mismatched types:
+ expected `collections::string::String`,
+    found `&collections::string::String`
+(expected struct `collections::string::String`,
+    found &-ptr) [E0308]
+src/reader.rs:72         MalType::Sym(tok)
+                                      ^~~
+src/reader.rs:72:22: 72:25 help: run `rustc --explain E0308` to see a detailed explanation
+src/reader.rs:72:9: 72:26 error: mismatched types:
+ expected `()`,
+    found `types::MalType`
+(expected (),
+    found enum `types::MalType`) [E0308]
+src/reader.rs:72         MalType::Sym(tok)
+                         ^~~~~~~~~~~~~~~~~
+src/reader.rs:72:9: 72:26 help: run `rustc --explain E0308` to see a detailed explanation
+src/printer.rs:5:9: 5:24 error: mismatched types:
+ expected `&types::MalType`,
+    found `types::MalType`
+(expected &-ptr,
+    found enum `types::MalType`) [E0308]
+src/printer.rs:5         MalType::Int(i) => i.to_string(),
+                         ^~~~~~~~~~~~~~~
+src/printer.rs:5:9: 5:24 help: run `rustc --explain E0308` to see a detailed explanation
+src/printer.rs:6:9: 6:24 error: mismatched types:
+ expected `&types::MalType`,
+    found `types::MalType`
+(expected &-ptr,
+    found enum `types::MalType`) [E0308]
+src/printer.rs:6         MalType::Sym(s) => s,
+                         ^~~~~~~~~~~~~~~
+src/printer.rs:6:9: 6:24 help: run `rustc --explain E0308` to see a detailed explanation
+src/printer.rs:7:9: 7:27 error: mismatched types:
+ expected `&types::MalType`,
+    found `types::MalType`
+(expected &-ptr,
+    found enum `types::MalType`) [E0308]
+src/printer.rs:7         MalType::Vector(v) => {
+                         ^~~~~~~~~~~~~~~~~~
+src/printer.rs:7:9: 7:27 help: run `rustc --explain E0308` to see a detailed explanation
+src/step1_read_print.rs:17:14: 17:15 error: mismatched types:
+ expected `&str`,
+    found `collections::string::String`
+(expected &-ptr,
+    found struct `collections::string::String`) [E0308]
+src/step1_read_print.rs:17     read_str(s)
+                                        ^
+src/step1_read_print.rs:17:14: 17:15 help: run `rustc --explain E0308` to see a detailed explanation
+src/step1_read_print.rs:17:5: 17:16 error: mismatched types:
+ expected `types::MalType`,
+    found `reader::Reader`
+(expected enum `types::MalType`,
+    found struct `reader::Reader`) [E0308]
+src/step1_read_print.rs:17     read_str(s)
+                               ^~~~~~~~~~~
+src/step1_read_print.rs:17:5: 17:16 help: run `rustc --explain E0308` to see a detailed explanation
+error: aborting due to 29 previous errors
+Could not compile `mal_rust`.
+
+To learn more, run the command again with --verbose.

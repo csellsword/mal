@@ -6,12 +6,15 @@ mod types;
 mod reader;
 mod printer;
 
-use std::{ffi};
+use types::*;
+use reader::*;
+use printer::*;
 
+use std::{ffi};
 use readline as rl;
 
 fn read(s: String) -> MalType {
-    read_str(s)
+    read_str(s.as_str())
 }
 
 fn eval(s: MalType) -> MalType {
