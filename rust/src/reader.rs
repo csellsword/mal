@@ -40,7 +40,10 @@ fn tokenizer(src: &str) -> Vec<String> {
     let re = regex::Regex::new(token_regex).unwrap();
     let mut v: Vec<String> = Vec::new();
     for t in re.captures_iter(src) {
-        v.push(t.at(0).unwrap().trim().to_string());
+        let stage1 = t.at(0).unwrap().trim();
+        if stage1 != "," {
+            v.push(stage1.trim_matches(',').to_string());
+        }
     }
     v
 }
@@ -48,6 +51,7 @@ fn tokenizer(src: &str) -> Vec<String> {
 fn read_form(mut reader: &mut Reader) -> MalType {
     let tt = reader.peek().unwrap();
     let t = tt.as_str();
+    //println!("{}",&t);
     match t {
         "(" => {
             reader.next();
