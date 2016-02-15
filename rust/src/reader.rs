@@ -40,16 +40,14 @@ fn tokenizer(src: &str) -> Vec<String> {
     let re = regex::Regex::new(token_regex).unwrap();
     let mut v: Vec<String> = Vec::new();
     for t in re.captures_iter(src) {
-        v.push(t.at(0).unwrap().to_string());
+        v.push(t.at(0).unwrap().trim().to_string());
     }
     v
 }
 
 fn read_form(mut reader: &mut Reader) -> MalType {
-    println!("read_form");
     let tt = reader.peek().unwrap();
     let t = tt.as_str();
-    println!("read_form, {}", t);
     match t {
         "(" => {
             reader.next();
@@ -60,12 +58,10 @@ fn read_form(mut reader: &mut Reader) -> MalType {
 }
 
 fn read_list(reader: &mut Reader) -> MalType {
-    println!("enter read_list");
     let mut result: Vec<MalType> = Vec::new();
     loop {
         let tt = reader.peek().unwrap();
         let t = tt.as_str();
-        println!("read_list, {}", t);
         match t {
             ")" => {
                 reader.next();
@@ -74,21 +70,16 @@ fn read_list(reader: &mut Reader) -> MalType {
             _ => result.push(read_form(reader)),
         }
     }
-    println!("leave read_list");
     MalType::Vector(result)
 }
 
 fn read_atom(reader: &mut Reader) -> MalType {
-    println!("enter read_atom");
     let tok = reader.next().unwrap();
     let int_reg = regex::Regex::new(r"^-?[0-9]+$").unwrap();
-    println!("leave read_atom");
     if int_reg.is_match(&tok) {
-        println!("atom is \'{}\'", &tok);
         MalType::Int(tok.parse().unwrap())
     }
     else {
-        println!("atom is \'{}\'", &tok);
         MalType::Sym(tok)
     }
 }

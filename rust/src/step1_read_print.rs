@@ -23,7 +23,7 @@ fn eval(s: MalType) -> MalType {
 
 fn print(s: MalType) -> String {
     let pretty_print = pr_str(&s);
-    println!("{}", &pretty_print);
+    println!("{}",&pretty_print);
     pretty_print
 }
 
@@ -40,7 +40,6 @@ fn main(){
                 rep(input);
             },
             _ => {
-                println!("readline error");
                 break;
             },
         }
