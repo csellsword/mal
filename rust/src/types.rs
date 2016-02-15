@@ -1,5 +1,3 @@
-use std::vec;
-
 pub enum MalType {
     Nil,
     Int(i64),
