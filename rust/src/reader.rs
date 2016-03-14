@@ -42,7 +42,8 @@ fn tokenizer(src: &str) -> Vec<String> {
     for t in re.captures_iter(src) {
         let stage1 = t.at(0).unwrap().trim();
         if stage1 != "," {
-            v.push(stage1.trim_matches(',').to_string());
+            let test_str = stage1.trim_matches(',').trim().to_string();
+						v.push(test_str);
         }
     }
     v
