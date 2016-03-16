@@ -52,7 +52,6 @@ fn tokenizer(src: &str) -> Vec<String> {
 fn read_form(mut reader: &mut Reader) -> MalType {
     let tt = reader.peek().unwrap();
     let t = tt.as_str();
-    //println!("{}",&t);
     match t {
         "(" => {
             reader.next();
