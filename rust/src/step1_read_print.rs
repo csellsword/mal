@@ -13,16 +13,20 @@ use printer::*;
 use std::{ffi};
 use readline as rl;
 
-fn read(s: String) -> MalType {
+fn read(s: String) -> Result<MalType, String> {
     read_str(s.as_str())
 }
 
-fn eval(s: MalType) -> MalType {
+fn eval(s: Result<MalType, String>) -> Result<MalType, String> {
     s
 }
 
-fn print(s: MalType) -> String {
-    let pretty_print = pr_str(&s);
+fn print(s: Result<MalType, String>) -> String {
+    //let pretty_print = pr_str(&s);
+    let pretty_print = match s {
+			Ok(good) => pr_str(&good),
+			Err(nogood) => nogood,
+		};
     println!("{}",&pretty_print);
     pretty_print
 }

@@ -31,7 +31,7 @@ impl Reader {
     }
 }
 
-pub fn read_str(src: &str) -> MalType {
+pub fn read_str(src: &str) -> Result<MalType, String> {
     let mut reader = Reader::new(tokenizer(src));
     read_form(&mut reader)
 }
@@ -49,7 +49,7 @@ fn tokenizer(src: &str) -> Vec<String> {
     v
 }
 
-fn read_form(mut reader: &mut Reader) -> MalType {
+fn read_form(mut reader: &mut Reader) -> Result<MalType, String> {
     let tt = reader.peek().unwrap();
     let t = tt.as_str();
     match t {
@@ -61,29 +61,38 @@ fn read_form(mut reader: &mut Reader) -> MalType {
     }
 }
 
-fn read_list(reader: &mut Reader) -> MalType {
+fn read_list(reader: &mut Reader) -> Result<MalType, String> {
     let mut result: Vec<MalType> = Vec::new();
     loop {
-        let tt = reader.peek().unwrap();
-        let t = tt.as_str();
-        match t {
+        let tt = reader.peek();
+        //let t = tt.as_str();
+				let t = if let Some(s) = tt {
+					s
+				}
+				else{
+					return Err("Expected ')', got EOF".to_string());
+				};
+        match t.as_str() {
             ")" => {
                 reader.next();
                 break;
             },
-            _ => result.push(read_form(reader)),
+            _ => {
+							let form = try!(read_form(reader));
+							result.push(form)
+						},
         }
     }
-    MalType::Vector(result)
+    Ok(MalType::Vector(result))
 }
 
-fn read_atom(reader: &mut Reader) -> MalType {
+fn read_atom(reader: &mut Reader) -> Result<MalType, String> {
     let tok = reader.next().unwrap();
     let int_reg = regex::Regex::new(r"^-?[0-9]+$").unwrap();
     if int_reg.is_match(&tok) {
-        MalType::Int(tok.parse().unwrap())
+        Ok(MalType::Int(tok.parse().unwrap()))
     }
     else {
-        MalType::Sym(tok)
+        Ok(MalType::Sym(tok))
     }
 }
