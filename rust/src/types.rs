@@ -23,3 +23,8 @@ impl MalType {
         }
     }
 }
+
+pub enum MalErr {
+	ParseErr(String),
+	Comment,
+}
